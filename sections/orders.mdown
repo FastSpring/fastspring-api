@@ -8,7 +8,8 @@ Returns an order identified by its reference.
 
 `GET /company/{company}/order/{reference}`
 
-```<order>
+``` xml
+<order>
   <reference/>
   <status>open | request | requested | acceptance | accepted | fulfillment | fulfilled | completion | completed | canceled | failed</status>
   <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
@@ -64,7 +65,8 @@ Returns an order identified by its reference.
       <total>0.0</total>
     </payment>
   </payments>
-</order>```
+</order>
+```
 
 
 Generate coupon
@@ -74,6 +76,8 @@ Generates a new random coupon. The random coupon set is identified by its custom
 
 `POST /company/{company}/coupon/{prefix}/generate`
 
-```<couponCode>
+``` xml
+<couponCode>
   <code/>
-</couponCode>```
+</couponCode>
+```
