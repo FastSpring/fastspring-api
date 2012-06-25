@@ -1,0 +1,113 @@
+Subscriptions
+=============
+
+Get subscription
+----------------
+
+Returns a single subscription identified by its reference. You can get that reference by defining a [Postback notification](https://support.fastspring.com/entries/236490-api-notifications).
+
+`GET /company/{company}/subscription/{reference}`
+
+```<subscription>
+  <status>active | inactive</status>
+  <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
+  <statusReason>canceled-non-payment | completed | canceled</statusReason>
+  <cancelable>true | false</cancelable>
+  <reference/>
+  <test>true | false</test>
+  <referrer/>
+  <sourceName/>
+  <sourceKey/>
+  <sourceCampaign/>
+  <customer>
+    <firstName/>
+    <lastName/>
+    <company/>
+    <email/>
+    <phoneNumber/>
+  </customer>
+  <customerUrl/>
+  <productName/>
+  <tags/>
+  <quantity>0</quantity>
+  <nextPeriodDate>2010-08-15Z</nextPeriodDate>
+  <end>2010-08-15Z</end>
+</subscription>```
+
+Example: `curl -i -X GET -H 'Content-Type: application/xml' -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}`
+
+
+Update subscription
+-------------------
+
+Updates an existing subscription with the given data.
+
+`PUT /company/{company}/subscription/{reference}`
+
+```<subscription>
+	<productPath>(optional)</productPath>
+	<quantity>(optional)</quantity>
+	<tags>(optional)</tags>
+	<no-end-date>(optional)</no-end-date>
+	<coupon>(optional)</coupon>
+	<discount-duration>+[value]|-[value]|[absolute value] (optional)</discount-duration>
+	<proration>true|false (optional)</proration>
+</subscription>```
+
+Returns HTTP status code 200 on success.
+
+Example: `curl -i -X PUT -H 'Content-Type: application/xml' -u {username}:{password} -d '<subscription><productPath>/plana</productPath><quantity>10</quantity><tags>tagWithQuantity=5,tag2,tag3</tags><no-end-date/><coupon>TSTCPN</coupon><discount-duration>1</discount-duration><proration>true</proration></subscription>' https://api.fastspring.com/company/{company}/subscription/{reference}`
+
+
+Cancel subscription
+-------------------
+
+The delete action causes the cancellation of a subscription at next period.
+
+`DELETE /company/{company}/subscription/{reference}`
+
+```<subscription>
+  <status>active | inactive</status>
+  <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
+  <statusReason>canceled-non-payment | completed | canceled</statusReason>
+  <cancelable>true | false</cancelable>
+  <reference/>
+  <test>true | false</test>
+  <referrer/>
+  <sourceName/>
+  <sourceKey/>
+  <sourceCampaign/>
+  <customer>
+    <firstName/>
+    <lastName/>
+    <company/>
+    <email/>
+    <phoneNumber/>
+  </customer>
+  <customerUrl/>
+  <productName/>
+  <tags/>
+  <quantity>0</quantity>
+  <nextPeriodDate>2010-08-15Z</nextPeriodDate>
+  <end>2010-08-15Z</end>
+</subscription>```
+
+Example: `curl -i -X DELETE -H 'Content-Type: application/xml' -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}`
+
+
+Renew subscription
+------------------
+
+Renews the subscription according to the predefined conditions. **This applies to On-Demand subscriptions only and renews are limited to 1 per day / 4 successful per 30 days.**
+
+`POST /company/{company}/subscription/{reference}/renew`
+
+* Returns `201 Created https://api.fastspring.com/company/{company}/order/{reference}` if the renew was successful and an order has been created.
+* Returns `422: Unprocessable entity [subscription-not-active | rebill-limit-exceeded | next-charge-not-due | unsupported-country | expired-card | declined | risk | processor-risk | unknown | cc-address-verification | cc-cvv | voice-auth]` if it wasn't able to create an order. The subscription will fall into dunning mode and a notification will be sent. See [Payment Follow-up Notifications and Reminders](https://support.fastspring.com/entries/236467-payment-follow-up-notifications-and-reminders).
+* Returns `503: Service Unavailable` if the subscription isn't of type on-demand or if the subscription fell into dunning mode due to a failed payment (see 422).
+
+Example: `curl -i -X POST -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}/renew`
+
+For testing purposes the API accepts a simulate parameter containing either 'success' or 'failure'.
+
+Example: `curl -i -X POST -u {username}:{password} -d 'simulate=failure' https://api.fastspring.com/company/{company}/subscription/{reference}/renew`
