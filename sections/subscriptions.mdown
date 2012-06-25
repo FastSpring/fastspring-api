@@ -8,7 +8,8 @@ Returns a single subscription identified by its reference. You can get that refe
 
 `GET /company/{company}/subscription/{reference}`
 
-```<subscription>
+``` xml
+<subscription>
   <status>active | inactive</status>
   <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
   <statusReason>canceled-non-payment | completed | canceled</statusReason>
@@ -32,7 +33,8 @@ Returns a single subscription identified by its reference. You can get that refe
   <quantity>0</quantity>
   <nextPeriodDate>2010-08-15Z</nextPeriodDate>
   <end>2010-08-15Z</end>
-</subscription>```
+</subscription>
+```
 
 Example: `curl -i -X GET -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}`
 
@@ -44,7 +46,8 @@ Updates an existing subscription with the given data.
 
 `PUT /company/{company}/subscription/{reference}`
 
-```<subscription>
+``` xml
+<subscription>
 	<productPath>(optional)</productPath>
 	<quantity>(optional)</quantity>
 	<tags>(optional)</tags>
@@ -52,7 +55,8 @@ Updates an existing subscription with the given data.
 	<coupon>(optional)</coupon>
 	<discount-duration>+[value]|-[value]|[absolute value] (optional)</discount-duration>
 	<proration>true|false (optional)</proration>
-</subscription>```
+</subscription>
+```
 
 Returns HTTP status code 200 on success.
 
@@ -66,7 +70,8 @@ The delete action causes the cancellation of a subscription at next period.
 
 `DELETE /company/{company}/subscription/{reference}`
 
-```<subscription>
+``` xml
+<subscription>
   <status>active | inactive</status>
   <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
   <statusReason>canceled-non-payment | completed | canceled</statusReason>
@@ -90,7 +95,8 @@ The delete action causes the cancellation of a subscription at next period.
   <quantity>0</quantity>
   <nextPeriodDate>2010-08-15Z</nextPeriodDate>
   <end>2010-08-15Z</end>
-</subscription>```
+</subscription>
+```
 
 Example: `curl -i -X DELETE -H 'Content-Type: application/xml' -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}`
 
