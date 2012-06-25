@@ -34,7 +34,7 @@ Returns a single subscription identified by its reference. You can get that refe
   <end>2010-08-15Z</end>
 </subscription>```
 
-Example: `curl -i -X GET -H 'Content-Type: application/xml' -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}`
+Example: `curl -i -X GET -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}`
 
 
 Update subscription

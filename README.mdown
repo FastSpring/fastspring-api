@@ -1,2 +1,32 @@
-# About FastSpring #
-[FastSpring](http://www.fastspring.com) offers an innovative e-commerce engine designed to overcome ease of use, customer service, and cost issues that have plagued software e-commerce companies. We employ a customer-driven, iterative and collaborative Agile development process.
+FastSpring API
+==============
+
+The FastSpring API follows the REST principles as much as possible. Check out our wrappers and API endpoint documentations below.
+
+
+Wrappers and example code
+-------------------------
+
+* [Ruby](http://github.com/fastspring/fastspring-ruby)
+* [PHP](http://github.com/fastspring/fastspring-php)
+
+
+Authentication
+--------------
+
+All requests require authentication. This can be either through HTTP Basic authentication or URL parameters. This is secure since all requests use SSL. [More...](http://github.com/fastspring/fastspring-api/blob/master/sections/authentication.md)
+
+
+Making a request
+---------------
+
+* All URLs start with `https://api.fastspring.com/company/{company}` and must be made through SSL (HTTPS). Plain HTTP requests will be rejected.
+* Make sure to set the `Content-Type` header to `application/xml` for `PUT` and `POST` requests which will identify the format of the data being sent.
+* Check out our API endpoints below for further details
+
+
+API Endpoints
+-------------
+
+* [Subscriptions](http://github.com/fastspring/fastspring-api/blob/master/sections/subscriptions.mdown)
+* [Orders](http://github.com/fastspring/fastspring-api/blob/master/sections/orders.mdown)

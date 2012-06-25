@@ -1,0 +1,24 @@
+Authentication
+==============
+
+Authentication is managed using URL parameters, and is based on the users setup in your FastSpring account. Generally we recommend that you create a new user specifically for the purpose of using the API, rather than using a personal user account. All requests require authentication.
+
+Example: `https://api.fastspring.com/company/{company}/...?user={username}&pass={password}`
+
+
+Basic Auth (recommended)
+------------------------
+
+We recommend to use Basic Auth as alternative to URL parameters. This is especially useful for POST/PUT requests.
+
+Example: `curl -i -X PUT -H 'Content-Type: application/xml' -u {username}:{password} -d "..." https://api.fastspring.com/...`
+
+
+Company, Username, Password
+---------------------------
+
+As noted in the example, each request will require 3 key pieces of authentication information: 
+
+* `{company}` is the case sensitive Company ID which you use to login to SpringBoard.
+* `{username}` is the case sensitive username of the special API user you created via SpringBoard.
+* `{password}` is the case sensitive password of the API user.
