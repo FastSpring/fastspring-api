@@ -36,7 +36,11 @@ Returns a single subscription identified by its reference. You can get that refe
 </subscription>
 ```
 
-Example: `curl -i -X GET -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}`
+Example:
+
+``` shell
+curl -i -X GET -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}
+```
 
 
 Update subscription
@@ -60,7 +64,10 @@ Updates an existing subscription with the given data.
 
 Returns HTTP status code 200 on success.
 
-Example: `curl -i -X PUT -H 'Content-Type: application/xml' -u {username}:{password} -d '<subscription><productPath>/plana</productPath><quantity>10</quantity><tags>tagWithQuantity=5,tag2,tag3</tags><no-end-date/><coupon>TSTCPN</coupon><discount-duration>1</discount-duration><proration>true</proration></subscription>' https://api.fastspring.com/company/{company}/subscription/{reference}`
+Example: 
+``` shell
+curl -i -X PUT -H 'Content-Type: application/xml' -u {username}:{password} -d '<subscription><productPath>/plana</productPath><quantity>10</quantity><tags>tagWithQuantity=5,tag2,tag3</tags><no-end-date/><coupon>TSTCPN</coupon><discount-duration>1</discount-duration><proration>true</proration></subscription>' https://api.fastspring.com/company/{company}/subscription/{reference}
+```
 
 
 Cancel subscription
@@ -98,7 +105,11 @@ The delete action causes the cancellation of a subscription at next period.
 </subscription>
 ```
 
-Example: `curl -i -X DELETE -H 'Content-Type: application/xml' -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}`
+Example:
+
+``` shell
+curl -i -X DELETE -H 'Content-Type: application/xml' -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}
+```
 
 
 Renew subscription
@@ -112,8 +123,14 @@ Renews the subscription according to the predefined conditions. **This applies t
 * Returns `422: Unprocessable entity [subscription-not-active | rebill-limit-exceeded | next-charge-not-due | unsupported-country | expired-card | declined | risk | processor-risk | unknown | cc-address-verification | cc-cvv | voice-auth]` if it wasn't able to create an order. The subscription will fall into dunning mode and a notification will be sent. See [Payment Follow-up Notifications and Reminders](https://support.fastspring.com/entries/236467-payment-follow-up-notifications-and-reminders).
 * Returns `503: Service Unavailable` if the subscription isn't of type on-demand or if the subscription fell into dunning mode due to a failed payment (see 422).
 
-Example: `curl -i -X POST -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}/renew`
+Example:
 
-For testing purposes the API accepts a simulate parameter containing either 'success' or 'failure'.
+``` shell
+curl -i -X POST -u {username}:{password} https://api.fastspring.com/company/{company}/subscription/{reference}/renew
+```
 
-Example: `curl -i -X POST -u {username}:{password} -d 'simulate=failure' https://api.fastspring.com/company/{company}/subscription/{reference}/renew`
+For testing purposes the API accepts a simulate parameter containing either 'success' or 'failure':
+
+``` shell
+curl -i -X POST -u {username}:{password} -d 'simulate=failure' https://api.fastspring.com/company/{company}/subscription/{reference}/renew
+```

@@ -11,7 +11,11 @@ Basic Auth (recommended)
 
 We recommend to use Basic Auth as alternative to URL parameters. This is especially useful for POST/PUT requests.
 
-Example: `curl -i -X PUT -H 'Content-Type: application/xml' -u {username}:{password} -d "..." https://api.fastspring.com/...`
+Example:
+
+``` shell
+curl -i -X PUT -H 'Content-Type: application/xml' -u {username}:{password} -d "..." https://api.fastspring.com/...
+```
 
 
 Company, Username, Password
