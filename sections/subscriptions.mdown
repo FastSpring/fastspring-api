@@ -46,19 +46,27 @@ curl -i -X GET -u {username}:{password} https://api.fastspring.com/company/{comp
 Update subscription
 -------------------
 
-Updates an existing subscription with the given data.
+Updates an existing subscription. All elements are optional.
+
+* `productPath` Partial URL Path. E.g. /plana. See [Page Linking Options](https://support.fastspring.com/entries/20773966-page-linking-options).
+* `quantity` Value greater than zero.
+* `tags` Comma separated tag names and values.
+* `no-end-date` No content. If present the end-date will be removed.
+* `coupon` Coupon code to apply.
+* `discount-duration` Either absolute (1, 3, ...), relative (+1, +2, -3, ...) or an empty value. A `discount-duration` needs always a `coupon`. That coupon needs to be set either before or in the same request. Empty means that the discount will be unlimited. If discount duration falls below 1 (either via absolute or relative requests) we'll remove the coupon (and thus discount) from that subscription.
+* `proration` If `true` a prorated refund will be made to reimburse the customer for their current use. See [Upgrading / Downgrading / Changing Plans](https://support.fastspring.com/entries/20077837-upgrading-downgrading-changing-plans).
 
 `PUT /company/{company}/subscription/{reference}`
 
 ``` xml
 <subscription>
-	<productPath>(optional)</productPath>
-	<quantity>(optional)</quantity>
-	<tags>(optional)</tags>
-	<no-end-date>(optional)</no-end-date>
-	<coupon>(optional)</coupon>
-	<discount-duration>+[value]|-[value]|[absolute value] (optional)</discount-duration>
-	<proration>true|false (optional)</proration>
+	<productPath></productPath>
+	<quantity></quantity>
+	<tags></tags>
+	<no-end-date/>
+	<coupon></coupon>
+	<discount-duration></discount-duration>
+	<proration></proration>
 </subscription>
 ```
 
@@ -120,7 +128,7 @@ Renews the subscription according to the predefined conditions. **Applies to On-
 `POST /company/{company}/subscription/{reference}/renew`
 
 * Returns `201 Created https://api.fastspring.com/company/{company}/order/{reference}` if the renew was successful and an order has been created.
-* Returns `422: Unprocessable entity [subscription-not-active | rebill-limit-exceeded | next-charge-not-due | unsupported-country | expired-card | declined | risk | processor-risk | unknown | cc-address-verification | cc-cvv | voice-auth]` if it wasn't able to create an order. The subscription will fall into dunning mode and a notification will be sent. See [Payment Follow-up Notifications and Reminders](https://support.fastspring.com/entries/236467-payment-follow-up-notifications-and-reminders).
+* Returns `422: Unprocessable entity [error_code]` if it wasn't able to create an order. The subscription will fall into dunning mode and a notification will be sent. See [Payment Follow-up Notifications and Reminders](https://support.fastspring.com/entries/236467-payment-follow-up-notifications-and-reminders). Error codes: subscription-not-active, rebill-limit-exceeded, next-charge-not-due, unsupported-country, expired-card, declined, risk, processor-risk, unknown, cc-address-verification, cc-cvv, voice-auth
 * Returns `503: Service Unavailable` if the subscription isn't of type on-demand or if the subscription fell into dunning mode due to a failed payment (see 422).
 
 Example:
