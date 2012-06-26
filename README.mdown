@@ -3,6 +3,8 @@ FastSpring API
 
 The FastSpring API follows the REST principles as much as possible. Check out our [wrappers](#wrappers-and-example-code) and [API endpoint documentation](#api-endpoints).
 
+In addition to the REST APIs, there are also "push" notifications / IPN postback's available for subscription activation and deactivation.  It is typical to use both the rest API and push notifications for a complete solution.  Please see the [notification documentation](https://support.fastspring.com/entries/236490-notifications-overview) for more information.
+
 
 Wrappers and example code
 -------------------------
