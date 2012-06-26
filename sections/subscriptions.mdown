@@ -115,7 +115,7 @@ curl -i -X DELETE -H 'Content-Type: application/xml' -u {username}:{password} ht
 Renew subscription
 ------------------
 
-Renews the subscription according to the predefined conditions. **This applies to On-Demand subscriptions only and renews are limited to 1 per day / 4 successful per 30 days.**
+Renews the subscription according to the predefined conditions. **Applies to On-Demand subscriptions only. Renews are limited to 1 per day / 4 successful per 30 days.**
 
 `POST /company/{company}/subscription/{reference}/renew`
 

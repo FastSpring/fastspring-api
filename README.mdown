@@ -1,7 +1,7 @@
 FastSpring API
 ==============
 
-The FastSpring API follows the REST principles as much as possible. Check out our wrappers and API endpoint documentations below.
+The FastSpring API follows the REST principles as much as possible. Check out our [wrappers](#wrappers-and-example-code) and [API endpoint documentation](#api-endpoints).
 
 
 Wrappers and example code
