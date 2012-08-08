@@ -48,6 +48,11 @@ Update subscription
 
 Updates an existing subscription. All elements are optional.
 
+* `firstName` First name
+* `lastName` Last name
+* `company` Company name or empty
+* `email` Email address
+* `phoneNumber` Phone number
 * `productPath` Partial URL Path. E.g. /plana. See [Page Linking Options](https://support.fastspring.com/entries/20773966-page-linking-options).
 * `quantity` Value greater than zero.
 * `tags` Comma separated tag names and values.
@@ -60,6 +65,11 @@ Updates an existing subscription. All elements are optional.
 
 ``` xml
 <subscription>
+	<firstName></firstName>
+	<lastName></lastName>
+	<company></company>
+	<email></email>
+	<phoneNumber></phoneNumber>
 	<productPath></productPath>
 	<quantity></quantity>
 	<tags></tags>
