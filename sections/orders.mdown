@@ -15,6 +15,7 @@ Returns an order identified by its reference.
   <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
   <test>true | false</test>
   <due>2010-08-15T00:00:00.000Z</due>
+  <returnStatus>none | partial | full</returnStatus>
   <currency/>
   <referrer/>
   <originIp/>
@@ -66,6 +67,85 @@ Returns an order identified by its reference.
     </payment>
   </payments>
 </order>
+```
+
+Search orders
+-------------
+
+Search orders in the entire company.  The query string is case-insensitive and can be any of the following:
+  * Exact order reference.  Example: ABC123-123-123
+  * Customer last name (full or 'starts with'). Example: doe
+  * Customer company name (full or 'starts with'). Example: abc
+  * Full customer email address.  Example: doe@abc.com
+  * Customer email domain name, beginning with an "@" sign.  Example: @abc.com
+  * Last 5 digits of a credit card number (credit card orders only).  Example: 54321
+  * Last 4 digits of a credit card number (credit card orders only).  Example: 4321
+  * Specific coupon code.  Example search phrase: coupon XYZ123
+  * Exact referrer.  Example: referrer abc
+
+`GET /company/{company}/orders/search?query={query string}`
+
+``` xml
+<orders>
+  <order>
+    <reference/>
+    <status>open | request | requested | acceptance | accepted | fulfillment | fulfilled | completion | completed | canceled | failed</status>
+    <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
+    <test>true | false</test>
+    <due>2010-08-15T00:00:00.000Z</due>
+    <returnStatus>none | partial | full</returnStatus>
+    <currency/>
+    <referrer/>
+    <originIp/>
+    <total>0.0</total>
+    <tax>0.0</tax>
+    <shipping>0.0</shipping>
+    <sourceName/>
+    <sourceKey/>
+    <sourceCampaign/>
+    <customer>
+      <firstName/>
+      <lastName/>
+      <company/>
+      <email/>
+      <phoneNumber/>
+    </customer>
+    <purchaser>
+      <firstName/>
+      <lastName/>
+      <company/>
+      <email/>
+      <phoneNumber/>
+    </purchaser>
+    <address>
+      <addressLine1/>
+      <addressLine2/>
+      <city/>
+      <region/>
+      <regionCustom/>
+      <postalCode/>
+      <country/>
+    </address>
+    <orderItems>
+      <orderItem>
+        <productDisplay/>
+        <productName/>
+        <quantity>0</quantity>
+        <subscriptionReference/>
+      </orderItem>
+    </orderItems>
+    <payments>
+      <payment>
+        <status>open | request | requested | acceptance | accepted | fulfillment | fulfilled | completion | completed | canceled | failed</status>
+        <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
+        <methodType>paypal | creditcard | test | bank | check | purchase-order | free</methodType>
+        <declinedReason>internal-error | unsupported-country | expired-card | declined | risk | processor-risk | connection | unknown | cc-address-verification | cc-cvv | voice-auth</declinedReason>
+        <currency/>
+        <total>0.0</total>
+      </payment>
+    </payments>
+  </order>
+</orders>
 ```
 
 
