@@ -1,0 +1,15 @@
+Misc.
+=====
+
+Create attachment
+-----------------
+
+Creates an attachment using the posted data.  The allowable maximum data size is 48KB.
+
+`POST /company/{company}/attachment`
+
+```` xml
+<attachment>
+  <token/>
+</attachment>
+````
