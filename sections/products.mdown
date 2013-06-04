@@ -1,0 +1,108 @@
+Products
+========
+
+Note: All URLs start with `https://api.fastspring.com/company/{company}/site/{siteKey}`. 
+
+{siteKey} is an API key specific to the store.  Please contact our support for your site's API key.
+
+Get product
+-----------
+
+Returns information about an existing product.
+
+`GET /company/{company}/site/{siteKey}/product/{productPath}`
+
+``` xml
+<product>
+  <isTest>true | false</isTest>
+  <productPath/>
+  <name/>
+  <display/>
+  <price>0.0</price>
+  <description/>
+</product>
+```
+
+Example:
+
+``` shell
+curl -i -X GET -u {username}:{password} https://api.fastspring.com/company/{company}/site/{siteKey}/product/{productPath}
+```
+
+
+Create product
+--------------
+
+Creates a new product.
+
+* `isTest` If `false` it will be available to the public in a live site.
+* `productPath` Name to use when this page is referenced in a store URL path. This is a partial URL path name that will be used by the store for this specific page (it is not a full URL on another website).
+* `name` Name of the product (for default display and management purposes)
+* `display` Optional. Alternative product display name. If specified then customers will only see this as the product's name.
+* `price` Price in USD.
+* `description` Optional. Product / service description displayed during checkout (HTML is allowed).
+* `fulfillment` Optional. URL is the location of the file to be uploaded.  Email template name is the name of an existing shared email template.
+
+`POST /company/{company}/site/{siteKey}/product`
+
+``` xml
+<product>
+  <isTest/>
+  <productPath/>
+  <name/>
+  <display/>
+  <price/>
+  <description/>
+  <fulfillment>
+    <file>
+      <url/>
+    </file>
+    <email>
+      <templateName/>
+    </email>
+  </fulfillment>
+</product>
+```
+
+* Returns `201 Created https://api.fastspring.com/company/{company}/site/{siteKey}/product/{productPath}`
+* Returns `400: Bad request` if required values weren't delivered, format was wrong or if there's already a product with same productPath.
+
+Example:
+
+``` shell
+curl -i -X POST -H 'Content-Type: application/xml' -u {username}:{password} -d '<product><isTest>true</isTest><productPath>/photo</productPath><name>Photo</name><display>Photo Organizer Deluxe</display><price>9.95</price><description>Organizes your Photos &lt;strong&gt;easily&lt;/strong&gt;</description></product>' https://api.fastspring.com/company/{company}/site/{siteKey}/product
+```
+
+
+Update product
+--------------
+
+Updates an existing product. All elements are optional.
+
+* `isTest` If `false` it will be available to the public in a live site.
+* `productPath` Name to use when this page is referenced in a store URL path. This is a partial URL path name that will be used by the store for this specific page (it is not a full URL on another website).
+* `name` Name of the product (for default display and management purposes)
+* `display` Alternative product display name. If specified then customers will only see this as the product's name.
+* `price` Price in USD.
+* `description` Product / service description displayed during checkout (HTML is allowed).
+
+`PUT /company/{company}/site/{siteKey}/product/{productPath}`
+
+``` xml
+<product>
+  <isTest/>
+  <productPath/>
+  <name/>
+  <display/>
+  <price/>
+  <description/>
+</product>
+```
+
+* Returns HTTP status code 200 on success.
+* Returns `400: Bad request` if values weren't valid or if there's already a product with same productPath.
+
+Example: 
+``` shell
+curl -i -X PUT -H 'Content-Type: application/xml' -u {username}:{password} -d '<product><isTest>false</isTest><productPath>/photo</productPath><name>Photo</name><display>Photo Organizer Deluxe</display><price>9.95</price><description>Organizes your Photos &lt;strong&gt;easily&lt;/strong&gt;</description></product>' https://api.fastspring.com/company/{company}/site/{siteKey}/product/{productPath}
+```
