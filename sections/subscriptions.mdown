@@ -119,6 +119,7 @@ The delete action causes the cancellation of a subscription at next period.
   <productName/>
   <tags/>
   <quantity>0</quantity>
+  <coupon/>
   <nextPeriodDate>2010-08-15Z</nextPeriodDate>
   <end>2010-08-15Z</end>
 </subscription>
