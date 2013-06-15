@@ -30,5 +30,5 @@ Making a request
 API Endpoints
 -------------
 
-* [Subscriptions](http://github.com/fastspring/fastspring-api-preview/blob/master/sections/subscriptions.mdown)
-* [Orders](http://github.com/fastspring/fastspring-api-preview/blob/master/sections/orders.mdown)
+* [Subscriptions](http://github.com/fastspring/fastspring-api/blob/master/sections/subscriptions.mdown)
+* [Orders](http://github.com/fastspring/fastspring-api/blob/master/sections/orders.mdown)
