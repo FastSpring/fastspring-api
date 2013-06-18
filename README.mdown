@@ -32,3 +32,4 @@ API Endpoints
 
 * [Subscriptions](http://github.com/fastspring/fastspring-api/blob/master/sections/subscriptions.mdown)
 * [Orders](http://github.com/fastspring/fastspring-api/blob/master/sections/orders.mdown)
+* [Miscellaneous](http://github.com/fastspring/fastspring-api/blob/master/sections/misc.mdown)
