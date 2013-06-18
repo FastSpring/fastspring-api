@@ -147,17 +147,3 @@ Search orders in the entire company.  The query string is case-insensitive and c
   </order>
 </orders>
 ```
-
-
-Generate coupon
----------------
-
-Generates a new random coupon. The random coupon set is identified by its custom prefix, which was specified when creating the coupon. A maximum of 10,000 coupons may be generated each day.
-
-`POST /company/{company}/coupon/{prefix}/generate`
-
-``` xml
-<couponCode>
-  <code/>
-</couponCode>
-```
