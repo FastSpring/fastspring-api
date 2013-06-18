@@ -92,17 +92,7 @@ Search orders in the entire company.  The query string is case-insensitive and c
     <status>open | request | requested | acceptance | accepted | fulfillment | fulfilled | completion | completed | canceled | failed</status>
     <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
     <test>true | false</test>
-    <due>2010-08-15T00:00:00.000Z</due>
     <returnStatus>none | partial | full</returnStatus>
-    <currency/>
-    <referrer/>
-    <originIp/>
-    <total>0.0</total>
-    <tax>0.0</tax>
-    <shipping>0.0</shipping>
-    <sourceName/>
-    <sourceKey/>
-    <sourceCampaign/>
     <customer>
       <firstName/>
       <lastName/>
@@ -110,40 +100,6 @@ Search orders in the entire company.  The query string is case-insensitive and c
       <email/>
       <phoneNumber/>
     </customer>
-    <purchaser>
-      <firstName/>
-      <lastName/>
-      <company/>
-      <email/>
-      <phoneNumber/>
-    </purchaser>
-    <address>
-      <addressLine1/>
-      <addressLine2/>
-      <city/>
-      <region/>
-      <regionCustom/>
-      <postalCode/>
-      <country/>
-    </address>
-    <orderItems>
-      <orderItem>
-        <productDisplay/>
-        <productName/>
-        <quantity>0</quantity>
-        <subscriptionReference/>
-      </orderItem>
-    </orderItems>
-    <payments>
-      <payment>
-        <status>open | request | requested | acceptance | accepted | fulfillment | fulfilled | completion | completed | canceled | failed</status>
-        <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
-        <methodType>paypal | creditcard | test | bank | check | purchase-order | free</methodType>
-        <declinedReason>internal-error | unsupported-country | expired-card | declined | risk | processor-risk | connection | unknown | cc-address-verification | cc-cvv | voice-auth</declinedReason>
-        <currency/>
-        <total>0.0</total>
-      </payment>
-    </payments>
   </order>
 </orders>
 ```
