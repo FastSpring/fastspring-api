@@ -31,6 +31,7 @@ Returns a single subscription identified by its reference. You can get that refe
   <productName/>
   <tags/>
   <quantity>0</quantity>
+  <coupon/>
   <nextPeriodDate>2010-08-15Z</nextPeriodDate>
   <end>2010-08-15Z</end>
 </subscription>
@@ -63,23 +64,6 @@ Updates an existing subscription. All elements are optional.
 
 `PUT /company/{company}/subscription/{reference}`
 
-``` xml
-<subscription>
-	<firstName></firstName>
-	<lastName></lastName>
-	<company></company>
-	<email></email>
-	<phoneNumber></phoneNumber>
-	<productPath></productPath>
-	<quantity></quantity>
-	<tags></tags>
-	<no-end-date/>
-	<coupon></coupon>
-	<discount-duration></discount-duration>
-	<proration></proration>
-</subscription>
-```
-
 * Returns `200: OK` on success. The response contains updated subscription data. See [Get Subscription](#get-subscription).
 * Returns `403: Forbidden` if un-canceling isn't possible anymore.
 * Returns `400: Bad Request` if the request was invalid. The response will contain a detailed description.
@@ -100,33 +84,7 @@ The delete action causes the cancellation of a subscription at next period.
 
 `DELETE /company/{company}/subscription/{reference}`
 
-``` xml
-<subscription>
-  <status>active | inactive</status>
-  <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
-  <statusReason>canceled-non-payment | completed | canceled</statusReason>
-  <cancelable>true | false</cancelable>
-  <reference/>
-  <test>true | false</test>
-  <referrer/>
-  <sourceName/>
-  <sourceKey/>
-  <sourceCampaign/>
-  <customer>
-    <firstName/>
-    <lastName/>
-    <company/>
-    <email/>
-    <phoneNumber/>
-  </customer>
-  <customerUrl/>
-  <productName/>
-  <tags/>
-  <quantity>0</quantity>
-  <nextPeriodDate>2010-08-15Z</nextPeriodDate>
-  <end>2010-08-15Z</end>
-</subscription>
-```
+Returns HTTP status code 200 on success.
 
 Example:
 

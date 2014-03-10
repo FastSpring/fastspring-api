@@ -15,6 +15,7 @@ Returns an order identified by its reference.
   <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
   <test>true | false</test>
   <due>2010-08-15T00:00:00.000Z</due>
+  <returnStatus>none | partial | full</returnStatus>
   <currency/>
   <referrer/>
   <originIp/>
@@ -68,16 +69,37 @@ Returns an order identified by its reference.
 </order>
 ```
 
+Search orders
+-------------
 
-Generate coupon
----------------
+Search orders in the entire company.  The query string is case-insensitive and can be any of the following:
+  * Exact order reference.  Example: ABC123-123-123
+  * Customer last name (full or 'starts with'). Example: doe
+  * Customer company name (full or 'starts with'). Example: abc
+  * Full customer email address.  Example: doe@abc.com
+  * Customer email domain name, beginning with an "@" sign.  Example: @abc.com
+  * Last 5 digits of a credit card number (credit card orders only).  Example: 54321
+  * Last 4 digits of a credit card number (credit card orders only).  Example: 4321
+  * Specific coupon code.  Example search phrase: coupon XYZ123
+  * Exact referrer.  Example: referrer abc
 
-Generates a new random coupon. The random coupon set is identified by its custom prefix, which was specified when creating the coupon. A maximum of 10,000 coupons may be generated each day.
-
-`POST /company/{company}/coupon/{prefix}/generate`
+`GET /company/{company}/orders/search?query={query string}`
 
 ``` xml
-<couponCode>
-  <code/>
-</couponCode>
+<orders>
+  <order>
+    <reference/>
+    <status>open | request | requested | acceptance | accepted | fulfillment | fulfilled | completion | completed | canceled | failed</status>
+    <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
+    <test>true | false</test>
+    <returnStatus>none | partial | full</returnStatus>
+    <customer>
+      <firstName/>
+      <lastName/>
+      <company/>
+      <email/>
+      <phoneNumber/>
+    </customer>
+  </order>
+</orders>
 ```
