@@ -80,7 +80,12 @@ Updates an existing subscription. All elements are optional.
 </subscription>
 ```
 
-Returns HTTP status code 200 on success.
+* Returns `200: OK` on success. The response contains updated subscription data. See [Get Subscription](#get-subscription).
+* Returns `403: Forbidden` if un-canceling isn't possible anymore.
+* Returns `400: Bad Request` if the request was invalid. The response will contain a detailed description.
+* Returns `422: Unprocessable entity` if productPath was unknown.
+* Returns `412: Precondition Failed [error_code]` if it wasn't able to perform the update. Error codes: not-changeable, discount-zero-or-less, end-date-not-supported, end-date-too-early, next-period-date-empty, next-period-date-not-supported-on-demand, next-period-date-too-early, proration-not-supported-on-demand, proration-not-supported-not-started, proration-not-supported-refund-period-expired, quantity-zero-or-less.
+* Returns `500: Internal Server Error` if an unexpected server error happened.
 
 Example: 
 ``` shell
